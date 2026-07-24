@@ -1,0 +1,462 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Uchit Taliyan | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0d1117;
+            color: #e6edf3;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #161b22, #0d1117);
+            border-bottom: 1px solid #30363d;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+            color: #58a6ff;
+        }
+
+        header h2 {
+            max-width: 850px;
+            margin: auto;
+            font-size: 21px;
+            font-weight: normal;
+            color: #c9d1d9;
+        }
+
+        .typing-image {
+            max-width: 100%;
+            margin-top: 30px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            padding: 15px;
+            background-color: #161b22;
+            border-bottom: 1px solid #30363d;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 6px 14px;
+            color: #e6edf3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #58a6ff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        section {
+            margin-bottom: 35px;
+            padding: 32px;
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 14px;
+        }
+
+        section h2 {
+            color: #58a6ff;
+            margin-bottom: 22px;
+            font-size: 30px;
+            border-bottom: 2px solid #30363d;
+            padding-bottom: 10px;
+        }
+
+        section h3 {
+            margin: 20px 0 12px;
+            color: #f0f6fc;
+        }
+
+        p {
+            margin-bottom: 13px;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: #3fb950;
+            font-weight: bold;
+        }
+
+        .badge-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .badge-container img {
+            margin: 6px;
+            max-width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+            padding: 13px 18px;
+            border-radius: 8px;
+            background-color: #21262d;
+            border: 1px solid #30363d;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #238636;
+            transform: translateY(-3px);
+        }
+
+        .tech-icons {
+            text-align: center;
+        }
+
+        .tech-icons img {
+            max-width: 100%;
+            margin-top: 12px;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .stats img {
+            width: 100%;
+            max-width: 490px;
+            border-radius: 10px;
+        }
+
+        .full-image {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+        blockquote {
+            padding: 18px;
+            margin-top: 15px;
+            border-left: 5px solid #58a6ff;
+            background-color: #0d1117;
+            font-style: italic;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #161b22;
+            border-top: 1px solid #30363d;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+        }
+
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 35px;
+            }
+
+            header h2 {
+                font-size: 17px;
+            }
+
+            nav a {
+                margin: 5px 7px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 22px;
+            }
+
+            section h2 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Hi 👋, I'm Uchit Taliyan</h1>
+
+        <h2>
+            B.Tech CSE Student | Full Stack Web Developer |
+            AI/ML Enthusiast | Competitive Programmer
+        </h2>
+
+        <img
+            class="typing-image"
+            src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3500&pause=1000&center=true&vCenter=true&width=700&lines=Welcome+to+my+Portfolio!;Full+Stack+Web+Developer;AI+%26+Machine+Learning+Learner;Competitive+Programmer;Always+Learning+New+Technologies"
+            alt="Animated introduction"
+        >
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#connect">Connect</a>
+        <a href="#skills">Skills</a>
+        <a href="#stats">GitHub Stats</a>
+        <a href="#coding">Coding</a>
+        <a href="#focus">Current Focus</a>
+    </nav>
+
+    <main class="container">
+
+        <section id="about">
+            <h2>🚀 About Me</h2>
+
+            <div class="badge-container">
+                <img
+                    src="https://img.shields.io/badge/CGPA-8.87%20%2F%2010-brightgreen?style=for-the-badge"
+                    alt="CGPA 8.87 out of 10"
+                >
+
+                <img
+                    src="https://img.shields.io/badge/B.Tech-CSE-blue?style=for-the-badge"
+                    alt="B.Tech CSE"
+                >
+
+                <img
+                    src="https://img.shields.io/badge/Open%20to-Internships-orange?style=for-the-badge"
+                    alt="Open to Internships"
+                >
+            </div>
+
+            <p>🎓 B.Tech Computer Science and Engineering student.</p>
+
+            <p>
+                📚 Current CGPA:
+                <span class="highlight">8.87 / 10.00</span>
+            </p>
+
+            <p>
+                💻 Passionate about web development, artificial intelligence,
+                machine learning and problem-solving.
+            </p>
+
+            <h3>🌱 Currently Learning</h3>
+
+            <ul>
+                <li>Full Stack Web Development</li>
+                <li>Machine Learning</li>
+                <li>Data Structures and Algorithms</li>
+                <li>System Design</li>
+            </ul>
+
+            <h3>🎯 Goals</h3>
+
+            <ul>
+                <li>Become a Software Development Engineer</li>
+                <li>Build impactful real-world projects</li>
+                <li>Contribute to open-source projects</li>
+            </ul>
+        </section>
+
+        <section id="connect">
+            <h2>🌐 Connect With Me</h2>
+
+            <div class="social-links">
+                <a
+                    href="https://www.linkedin.com/in/uchit-taliyan-46115b359/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LinkedIn
+                </a>
+
+                <a
+                    href="https://github.com/uchitabescse29"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub
+                </a>
+
+                <a
+                    href="https://leetcode.com/u/uchittaliyan45/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LeetCode
+                </a>
+
+                <a
+                    href="https://www.codechef.com/users/king_coding12"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    CodeChef
+                </a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>💻 Tech Stack</h2>
+
+            <h3>Programming Languages</h3>
+
+            <div class="tech-icons">
+                <img
+                    src="https://skillicons.dev/icons?i=c,cpp,java,python,javascript,html,css"
+                    alt="C, C++, Java, Python, JavaScript, HTML and CSS"
+                >
+            </div>
+
+            <h3>Frameworks and Tools</h3>
+
+            <div class="tech-icons">
+                <img
+                    src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,mysql,git,github,vscode,linux"
+                    alt="React, Node.js, Express, MongoDB, MySQL, Git, GitHub, VS Code and Linux"
+                >
+            </div>
+        </section>
+
+        <section id="stats">
+            <h2>📈 GitHub Stats</h2>
+
+            <div class="stats">
+                <img
+                    src="https://github-readme-stats.vercel.app/api?username=uchitabescse29&show_icons=true&theme=tokyonight"
+                    alt="Uchit's GitHub statistics"
+                >
+
+                <img
+                    src="https://github-readme-streak-stats.herokuapp.com/?user=uchitabescse29&theme=tokyonight"
+                    alt="Uchit's GitHub streak"
+                >
+            </div>
+
+            <h3>📊 Most Used Languages</h3>
+
+            <img
+                class="full-image"
+                src="https://github-readme-stats.vercel.app/api/top-langs/?username=uchitabescse29&layout=compact&theme=tokyonight"
+                alt="Most used programming languages"
+            >
+
+            <h3>🏆 GitHub Trophies</h3>
+
+            <img
+                class="full-image"
+                src="https://github-profile-trophy.vercel.app/?username=uchitabescse29&theme=tokyonight&margin-w=10&margin-h=10"
+                alt="GitHub profile trophies"
+            >
+
+            <h3>📅 Contribution Graph</h3>
+
+            <a
+                href="https://github.com/ashutosh00710/github-readme-activity-graph"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="full-image"
+                    src="https://github-readme-activity-graph.vercel.app/graph?username=uchitabescse29&theme=tokyo-night"
+                    alt="Uchit's GitHub contribution graph"
+                >
+            </a>
+        </section>
+
+        <section id="coding">
+            <h2>💡 Competitive Programming</h2>
+
+            <ul>
+                <li>💻 Solving Data Structures and Algorithms problems</li>
+                <li>🏆 Active on LeetCode and CodeChef</li>
+                <li>🚀 Improving problem-solving skills</li>
+                <li>📚 Learning advanced algorithms</li>
+            </ul>
+        </section>
+
+        <section id="focus">
+            <h2>📌 Current Focus</h2>
+
+            <ul>
+                <li>✅ MERN Stack Development</li>
+                <li>✅ Artificial Intelligence and Machine Learning</li>
+                <li>✅ Data Structures and Algorithms</li>
+                <li>✅ Open-Source Contributions</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>✨ Quote</h2>
+
+            <blockquote>
+                “Consistency beats talent when talent doesn't stay consistent.”
+            </blockquote>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            ⭐ If you like my work, consider giving a star to my repositories!
+        </p>
+
+        <img
+            src="https://komarev.com/ghpvc/?username=uchitabescse29&label=Profile+Views&color=0e75b6&style=flat"
+            alt="Profile views counter"
+        >
+
+        <p>© 2026 Uchit Taliyan</p>
+    </footer>
+
+</body>
+</html>
+```
