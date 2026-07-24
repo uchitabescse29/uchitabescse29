@@ -1,462 +1,1186 @@
-```html
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Portfolio of Uchit Taliyan, B.Tech CSE student, web developer and AI/ML learner.">
     <title>Uchit Taliyan | Portfolio</title>
 
     <style>
+        :root {
+            --bg: #08111f;
+            --bg-soft: #0d1a2d;
+            --card: rgba(17, 32, 52, 0.88);
+            --card-solid: #112034;
+            --text: #f4f7fb;
+            --muted: #a9b7ca;
+            --primary: #55a6ff;
+            --secondary: #64e0c1;
+            --border: rgba(150, 180, 220, 0.18);
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+            --radius: 20px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #0d1117;
-            color: #e6edf3;
-            line-height: 1.6;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(85, 166, 255, 0.15), transparent 26%),
+                radial-gradient(circle at 85% 20%, rgba(100, 224, 193, 0.12), transparent 24%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            padding: 70px 20px;
-            background: linear-gradient(135deg, #161b22, #0d1117);
-            border-bottom: 1px solid #30363d;
+        a {
+            color: inherit;
         }
 
-        header h1 {
-            font-size: 48px;
-            margin-bottom: 12px;
-            color: #58a6ff;
-        }
-
-        header h2 {
-            max-width: 850px;
-            margin: auto;
-            font-size: 21px;
-            font-weight: normal;
-            color: #c9d1d9;
-        }
-
-        .typing-image {
+        img {
             max-width: 100%;
-            margin-top: 30px;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            text-align: center;
-            padding: 15px;
-            background-color: #161b22;
-            border-bottom: 1px solid #30363d;
-        }
-
-        nav a {
-            display: inline-block;
-            margin: 6px 14px;
-            color: #e6edf3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #58a6ff;
         }
 
         .container {
-            width: 90%;
-            max-width: 1100px;
+            width: min(1120px, 92%);
             margin: auto;
-            padding: 40px 0;
         }
 
-        section {
-            margin-bottom: 35px;
-            padding: 32px;
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 14px;
+        .section {
+            padding: 85px 0;
         }
 
-        section h2 {
-            color: #58a6ff;
-            margin-bottom: 22px;
-            font-size: 30px;
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
+        .section-title {
+            margin-bottom: 34px;
         }
 
-        section h3 {
-            margin: 20px 0 12px;
-            color: #f0f6fc;
-        }
-
-        p {
-            margin-bottom: 13px;
-        }
-
-        ul {
-            margin-left: 25px;
-            margin-top: 10px;
-        }
-
-        li {
+        .section-title span {
+            display: inline-block;
+            color: var(--secondary);
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 8px;
         }
 
-        .highlight {
-            color: #3fb950;
-            font-weight: bold;
-        }
-
-        .badge-container {
-            text-align: center;
-            margin: 25px 0;
-        }
-
-        .badge-container img {
-            margin: 6px;
-            max-width: 100%;
-        }
-
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 18px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 150px;
-            padding: 13px 18px;
-            border-radius: 8px;
-            background-color: #21262d;
-            border: 1px solid #30363d;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            background-color: #238636;
-            transform: translateY(-3px);
-        }
-
-        .tech-icons {
-            text-align: center;
-        }
-
-        .tech-icons img {
-            max-width: 100%;
-            margin-top: 12px;
-        }
-
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .stats img {
-            width: 100%;
-            max-width: 490px;
-            border-radius: 10px;
-        }
-
-        .full-image {
-            display: block;
-            width: 100%;
-            max-width: 900px;
-            margin: 15px auto;
-            border-radius: 10px;
-        }
-
-        blockquote {
-            padding: 18px;
-            margin-top: 15px;
-            border-left: 5px solid #58a6ff;
-            background-color: #0d1117;
-            font-style: italic;
-            border-radius: 6px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: #161b22;
-            border-top: 1px solid #30363d;
-        }
-
-        footer p {
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.15;
             margin-bottom: 12px;
         }
 
-        @media screen and (max-width: 768px) {
-            header h1 {
-                font-size: 35px;
+        .section-title p {
+            max-width: 700px;
+            color: var(--muted);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8, 17, 31, 0.82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #d7e1ef;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            border: 1px solid var(--border);
+            background: var(--card-solid);
+            color: var(--text);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 65px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(85, 166, 255, 0.08);
+            color: #cfe6ff;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--secondary);
+            box-shadow: 0 0 14px var(--secondary);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            max-width: 760px;
+            font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle strong {
+            color: var(--text);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 0 21px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            border: 1px solid transparent;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #7f8cff);
+            color: #07111f;
+            box-shadow: 0 12px 28px rgba(85, 166, 255, 0.24);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+        }
+
+        .quick-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 26px;
+        }
+
+        .quick-stat strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 1.35rem;
+        }
+
+        .quick-stat span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .profile-card {
+            position: relative;
+            padding: 30px;
+            background:
+                linear-gradient(145deg, rgba(85, 166, 255, 0.13), rgba(100, 224, 193, 0.06)),
+                var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: rgba(85, 166, 255, 0.18);
+            top: -70px;
+            right: -55px;
+            filter: blur(4px);
+        }
+
+        .avatar {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 32px;
+            margin: 0 auto 24px;
+            display: grid;
+            place-items: center;
+            font-size: 3.7rem;
+            font-weight: 900;
+            color: #07111f;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 18px 35px rgba(85, 166, 255, 0.2);
+        }
+
+        .profile-card h3 {
+            text-align: center;
+            font-size: 1.65rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-card > p {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 23px;
+        }
+
+        .profile-details {
+            display: grid;
+            gap: 12px;
+        }
+
+        .profile-detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 12px 14px;
+            background: rgba(5, 12, 24, 0.45);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .profile-detail span:first-child {
+            color: var(--muted);
+        }
+
+        .profile-detail strong {
+            text-align: right;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 28px;
+        }
+
+        .glass-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .about-text strong {
+            color: var(--text);
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .highlight-card {
+            min-height: 145px;
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: rgba(8, 17, 31, 0.64);
+        }
+
+        .highlight-card .icon {
+            font-size: 1.55rem;
+            margin-bottom: 11px;
+        }
+
+        .highlight-card h3 {
+            margin-bottom: 6px;
+        }
+
+        .highlight-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        /* Education */
+        .education-card {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .education-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 1.7rem;
+            background: rgba(85, 166, 255, 0.12);
+            border: 1px solid var(--border);
+        }
+
+        .education-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .education-info p {
+            color: var(--muted);
+        }
+
+        .cgpa-box {
+            min-width: 145px;
+            text-align: center;
+            padding: 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(85, 166, 255, 0.16), rgba(100, 224, 193, 0.11));
+            border: 1px solid var(--border);
+        }
+
+        .cgpa-box strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+
+        .cgpa-box span {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 18px;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 9px 12px;
+            border-radius: 10px;
+            background: rgba(85, 166, 255, 0.09);
+            border: 1px solid var(--border);
+            color: #dcecff;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 305px;
+        }
+
+        .project-number {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--primary), #7f8cff);
+            color: #07111f;
+            font-weight: 900;
+            margin-bottom: 22px;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .project-tech span {
+            font-size: 0.78rem;
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: rgba(100, 224, 193, 0.08);
+            color: #bff6e8;
+            border: 1px solid var(--border);
+        }
+
+        .project-link {
+            margin-top: auto;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* Profiles */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .coding-card {
+            text-decoration: none;
+            transition: 0.28s;
+        }
+
+        .coding-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(85, 166, 255, 0.6);
+        }
+
+        .coding-card .platform-icon {
+            font-size: 2rem;
+            margin-bottom: 17px;
+        }
+
+        .coding-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .coding-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 17px;
+        }
+
+        .visit {
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        /* Contact */
+        .contact-card {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-card h2 {
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .contact-card p {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 16px 18px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: rgba(8, 17, 31, 0.6);
+            transition: 0.25s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .contact-link span {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer-content a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 950px) {
+            .hero-grid,
+            .about-grid,
+            .contact-card {
+                grid-template-columns: 1fr;
             }
 
-            header h2 {
-                font-size: 17px;
+            .profile-card {
+                max-width: 560px;
             }
 
-            nav a {
-                margin: 5px 7px;
-                font-size: 14px;
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            section {
+            .profile-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .education-card {
+                grid-template-columns: auto 1fr;
+            }
+
+            .cgpa-box {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 14px 4%;
+                background: #0b1627;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li,
+            .nav-links a {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px 8px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .highlights,
+            .skills-grid,
+            .projects-grid,
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .education-icon {
+                margin: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 68px 0;
+            }
+
+            .glass-card,
+            .profile-card {
                 padding: 22px;
             }
 
-            section h2 {
-                font-size: 25px;
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .quick-stats {
+                gap: 18px;
+            }
+
+            .profile-detail {
+                flex-direction: column;
+            }
+
+            .profile-detail strong {
+                text-align: left;
             }
         }
     </style>
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#home" class="logo">Uchit<span>.</span></a>
 
-    <header>
-        <h1>Hi 👋, I'm Uchit Taliyan</h1>
+            <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
 
-        <h2>
-            B.Tech CSE Student | Full Stack Web Developer |
-            AI/ML Enthusiast | Competitive Programmer
-        </h2>
-
-        <img
-            class="typing-image"
-            src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3500&pause=1000&center=true&vCenter=true&width=700&lines=Welcome+to+my+Portfolio!;Full+Stack+Web+Developer;AI+%26+Machine+Learning+Learner;Competitive+Programmer;Always+Learning+New+Technologies"
-            alt="Animated introduction"
-        >
-    </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#connect">Connect</a>
-        <a href="#skills">Skills</a>
-        <a href="#stats">GitHub Stats</a>
-        <a href="#coding">Coding</a>
-        <a href="#focus">Current Focus</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#profiles">Profiles</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <main class="container">
+    <header class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content reveal">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    Open to internships and learning opportunities
+                </div>
 
-        <section id="about">
-            <h2>🚀 About Me</h2>
+                <h1>Hi, I'm <span>Uchit Taliyan</span></h1>
 
-            <div class="badge-container">
-                <img
-                    src="https://img.shields.io/badge/CGPA-8.87%20%2F%2010-brightgreen?style=for-the-badge"
-                    alt="CGPA 8.87 out of 10"
-                >
+                <p class="hero-subtitle">
+                    A <strong>B.Tech Computer Science and Engineering student</strong>
+                    interested in full-stack web development, artificial intelligence,
+                    machine learning and competitive programming.
+                </p>
 
-                <img
-                    src="https://img.shields.io/badge/B.Tech-CSE-blue?style=for-the-badge"
-                    alt="B.Tech CSE"
-                >
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="https://github.com/uchitabescse29"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-outline">GitHub Profile</a>
+                </div>
 
-                <img
-                    src="https://img.shields.io/badge/Open%20to-Internships-orange?style=for-the-badge"
-                    alt="Open to Internships"
-                >
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <strong>8.87</strong>
+                        <span>Current CGPA</span>
+                    </div>
+
+                    <div class="quick-stat">
+                        <strong>B.Tech CSE</strong>
+                        <span>Academic Program</span>
+                    </div>
+
+                    <div class="quick-stat">
+                        <strong>Web + AI/ML</strong>
+                        <span>Current Focus</span>
+                    </div>
+                </div>
             </div>
 
-            <p>🎓 B.Tech Computer Science and Engineering student.</p>
+            <aside class="profile-card reveal">
+                <div class="avatar">UT</div>
+                <h3>Uchit Taliyan</h3>
+                <p>Student Developer & Problem Solver</p>
 
-            <p>
-                📚 Current CGPA:
-                <span class="highlight">8.87 / 10.00</span>
-            </p>
+                <div class="profile-details">
+                    <div class="profile-detail">
+                        <span>College</span>
+                        <strong>ABES Engineering College</strong>
+                    </div>
 
-            <p>
-                💻 Passionate about web development, artificial intelligence,
-                machine learning and problem-solving.
-            </p>
+                    <div class="profile-detail">
+                        <span>Course</span>
+                        <strong>B.Tech CSE</strong>
+                    </div>
 
-            <h3>🌱 Currently Learning</h3>
+                    <div class="profile-detail">
+                        <span>CGPA</span>
+                        <strong>8.87 / 10</strong>
+                    </div>
 
-            <ul>
-                <li>Full Stack Web Development</li>
-                <li>Machine Learning</li>
-                <li>Data Structures and Algorithms</li>
-                <li>System Design</li>
-            </ul>
+                    <div class="profile-detail">
+                        <span>Location</span>
+                        <strong>India</strong>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </header>
 
-            <h3>🎯 Goals</h3>
+    <main>
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span>About Me</span>
+                    <h2>Learning, building and improving every day.</h2>
+                    <p>
+                        I enjoy turning ideas into useful web experiences and strengthening
+                        my problem-solving skills through programming practice.
+                    </p>
+                </div>
 
-            <ul>
-                <li>Become a Software Development Engineer</li>
-                <li>Build impactful real-world projects</li>
-                <li>Contribute to open-source projects</li>
-            </ul>
-        </section>
+                <div class="about-grid">
+                    <article class="glass-card about-text reveal">
+                        <p>
+                            I am <strong>Uchit Taliyan</strong>, a Computer Science and
+                            Engineering student at ABES Engineering College.
+                        </p>
 
-        <section id="connect">
-            <h2>🌐 Connect With Me</h2>
+                        <p>
+                            My current interests include <strong>full-stack web development,
+                            artificial intelligence, machine learning and data structures
+                            and algorithms</strong>.
+                        </p>
 
-            <div class="social-links">
-                <a
-                    href="https://www.linkedin.com/in/uchit-taliyan-46115b359/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LinkedIn
-                </a>
+                        <p>
+                            My goal is to become a skilled Software Development Engineer,
+                            work on meaningful projects and contribute to open-source
+                            communities.
+                        </p>
+                    </article>
 
-                <a
-                    href="https://github.com/uchitabescse29"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    GitHub
-                </a>
+                    <div class="highlights">
+                        <article class="highlight-card reveal">
+                            <div class="icon">💻</div>
+                            <h3>Web Development</h3>
+                            <p>Building responsive interfaces and learning full-stack development.</p>
+                        </article>
 
-                <a
-                    href="https://leetcode.com/u/uchittaliyan45/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LeetCode
-                </a>
+                        <article class="highlight-card reveal">
+                            <div class="icon">🤖</div>
+                            <h3>AI & ML</h3>
+                            <p>Exploring artificial intelligence and machine learning concepts.</p>
+                        </article>
 
-                <a
-                    href="https://www.codechef.com/users/king_coding12"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    CodeChef
-                </a>
+                        <article class="highlight-card reveal">
+                            <div class="icon">🧠</div>
+                            <h3>Problem Solving</h3>
+                            <p>Practising programming questions on LeetCode and CodeChef.</p>
+                        </article>
+
+                        <article class="highlight-card reveal">
+                            <div class="icon">🚀</div>
+                            <h3>Career Goal</h3>
+                            <p>Preparing for software development internships and SDE roles.</p>
+                        </article>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2>💻 Tech Stack</h2>
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span>Education</span>
+                    <h2>Academic background</h2>
+                </div>
 
-            <h3>Programming Languages</h3>
+                <article class="glass-card education-card reveal">
+                    <div class="education-icon">🎓</div>
 
-            <div class="tech-icons">
-                <img
-                    src="https://skillicons.dev/icons?i=c,cpp,java,python,javascript,html,css"
-                    alt="C, C++, Java, Python, JavaScript, HTML and CSS"
-                >
+                    <div class="education-info">
+                        <h3>Bachelor of Technology in Computer Science and Engineering</h3>
+                        <p>ABES Engineering College</p>
+                        <p>Focused on programming, web development, AI/ML and core computer science subjects.</p>
+                    </div>
+
+                    <div class="cgpa-box">
+                        <strong>8.87</strong>
+                        <span>CGPA out of 10</span>
+                    </div>
+                </article>
             </div>
+        </section>
 
-            <h3>Frameworks and Tools</h3>
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span>Skills</span>
+                    <h2>Technologies I am learning and using</h2>
+                </div>
 
-            <div class="tech-icons">
-                <img
-                    src="https://skillicons.dev/icons?i=react,nodejs,express,mongodb,mysql,git,github,vscode,linux"
-                    alt="React, Node.js, Express, MongoDB, MySQL, Git, GitHub, VS Code and Linux"
-                >
+                <div class="skills-grid">
+                    <article class="glass-card skill-card reveal">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </article>
+
+                    <article class="glass-card skill-card reveal">
+                        <h3>Web Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                        </div>
+                    </article>
+
+                    <article class="glass-card skill-card reveal">
+                        <h3>Tools & Databases</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <section id="stats">
-            <h2>📈 GitHub Stats</h2>
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span>Projects</span>
+                    <h2>Featured work</h2>
+                    <p>
+                        Replace these cards with your latest GitHub projects whenever you add them.
+                    </p>
+                </div>
 
-            <div class="stats">
-                <img
-                    src="https://github-readme-stats.vercel.app/api?username=uchitabescse29&show_icons=true&theme=tokyonight"
-                    alt="Uchit's GitHub statistics"
-                >
+                <div class="projects-grid">
+                    <article class="glass-card project-card reveal">
+                        <div class="project-number">01</div>
+                        <h3>Personal Portfolio</h3>
+                        <p>
+                            A responsive personal portfolio website presenting my education,
+                            skills, coding profiles and career interests.
+                        </p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a class="project-link" href="#home">View Portfolio →</a>
+                    </article>
 
-                <img
-                    src="https://github-readme-streak-stats.herokuapp.com/?user=uchitabescse29&theme=tokyonight"
-                    alt="Uchit's GitHub streak"
-                >
+                    <article class="glass-card project-card reveal">
+                        <div class="project-number">02</div>
+                        <h3>Web Development Projects</h3>
+                        <p>
+                            A collection of beginner-to-intermediate web development projects
+                            created while learning frontend and full-stack concepts.
+                        </p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                        </div>
+                        <a class="project-link"
+                           href="https://github.com/uchitabescse29"
+                           target="_blank"
+                           rel="noopener noreferrer">Open GitHub →</a>
+                    </article>
+
+                    <article class="glass-card project-card reveal">
+                        <div class="project-number">03</div>
+                        <h3>DSA Practice</h3>
+                        <p>
+                            Programming and problem-solving practice covering basic data
+                            structures, algorithms and competitive coding questions.
+                        </p>
+                        <div class="project-tech">
+                            <span>C++</span>
+                            <span>Java</span>
+                            <span>Problem Solving</span>
+                        </div>
+                        <a class="project-link"
+                           href="https://leetcode.com/u/uchittaliyan45/"
+                           target="_blank"
+                           rel="noopener noreferrer">View Practice →</a>
+                    </article>
+                </div>
             </div>
-
-            <h3>📊 Most Used Languages</h3>
-
-            <img
-                class="full-image"
-                src="https://github-readme-stats.vercel.app/api/top-langs/?username=uchitabescse29&layout=compact&theme=tokyonight"
-                alt="Most used programming languages"
-            >
-
-            <h3>🏆 GitHub Trophies</h3>
-
-            <img
-                class="full-image"
-                src="https://github-profile-trophy.vercel.app/?username=uchitabescse29&theme=tokyonight&margin-w=10&margin-h=10"
-                alt="GitHub profile trophies"
-            >
-
-            <h3>📅 Contribution Graph</h3>
-
-            <a
-                href="https://github.com/ashutosh00710/github-readme-activity-graph"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img
-                    class="full-image"
-                    src="https://github-readme-activity-graph.vercel.app/graph?username=uchitabescse29&theme=tokyo-night"
-                    alt="Uchit's GitHub contribution graph"
-                >
-            </a>
         </section>
 
-        <section id="coding">
-            <h2>💡 Competitive Programming</h2>
+        <section class="section" id="profiles">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span>Online Profiles</span>
+                    <h2>Find me across coding platforms</h2>
+                    <p>No external statistics images are used, so this section will load properly on Vercel.</p>
+                </div>
 
-            <ul>
-                <li>💻 Solving Data Structures and Algorithms problems</li>
-                <li>🏆 Active on LeetCode and CodeChef</li>
-                <li>🚀 Improving problem-solving skills</li>
-                <li>📚 Learning advanced algorithms</li>
-            </ul>
+                <div class="profile-grid">
+                    <a class="glass-card coding-card reveal"
+                       href="https://github.com/uchitabescse29"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="platform-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>Repositories, source code and development activity.</p>
+                        <span class="visit">Visit Profile →</span>
+                    </a>
+
+                    <a class="glass-card coding-card reveal"
+                       href="https://leetcode.com/u/uchittaliyan45/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="platform-icon">🧩</div>
+                        <h3>LeetCode</h3>
+                        <p>Data structures, algorithms and coding problem practice.</p>
+                        <span class="visit">Visit Profile →</span>
+                    </a>
+
+                    <a class="glass-card coding-card reveal"
+                       href="https://www.codechef.com/users/king_coding12"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="platform-icon">🏆</div>
+                        <h3>CodeChef</h3>
+                        <p>Competitive programming profile and coding submissions.</p>
+                        <span class="visit">Visit Profile →</span>
+                    </a>
+
+                    <a class="glass-card coding-card reveal"
+                       href="https://www.linkedin.com/in/uchit-taliyan-46115b359/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div class="platform-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>Professional profile, education and career updates.</p>
+                        <span class="visit">Connect →</span>
+                    </a>
+                </div>
+            </div>
         </section>
 
-        <section id="focus">
-            <h2>📌 Current Focus</h2>
+        <section class="section" id="contact">
+            <div class="container">
+                <article class="glass-card contact-card reveal">
+                    <div>
+                        <div class="section-title" style="margin-bottom: 0;">
+                            <span>Contact</span>
+                            <h2>Let's connect and build something useful.</h2>
+                            <p>
+                                You can reach me through LinkedIn or explore my projects and
+                                coding progress on GitHub, LeetCode and CodeChef.
+                            </p>
+                        </div>
+                    </div>
 
-            <ul>
-                <li>✅ MERN Stack Development</li>
-                <li>✅ Artificial Intelligence and Machine Learning</li>
-                <li>✅ Data Structures and Algorithms</li>
-                <li>✅ Open-Source Contributions</li>
-            </ul>
+                    <div class="contact-actions">
+                        <a class="contact-link"
+                           href="https://www.linkedin.com/in/uchit-taliyan-46115b359/"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div>
+                                <strong>LinkedIn</strong><br>
+                                <span>Professional connection</span>
+                            </div>
+                            <strong>↗</strong>
+                        </a>
+
+                        <a class="contact-link"
+                           href="https://github.com/uchitabescse29"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <div>
+                                <strong>GitHub</strong><br>
+                                <span>Projects and source code</span>
+                            </div>
+                            <strong>↗</strong>
+                        </a>
+                    </div>
+                </article>
+            </div>
         </section>
-
-        <section>
-            <h2>✨ Quote</h2>
-
-            <blockquote>
-                “Consistency beats talent when talent doesn't stay consistent.”
-            </blockquote>
-        </section>
-
     </main>
 
     <footer>
-        <p>
-            ⭐ If you like my work, consider giving a star to my repositories!
-        </p>
-
-        <img
-            src="https://komarev.com/ghpvc/?username=uchitabescse29&label=Profile+Views&color=0e75b6&style=flat"
-            alt="Profile views counter"
-        >
-
-        <p>© 2026 Uchit Taliyan</p>
+        <div class="container footer-content">
+            <p>© <span id="year"></span> Uchit Taliyan. All rights reserved.</p>
+            <a href="#home">Back to top ↑</a>
+        </div>
     </footer>
 
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+            menuBtn.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuBtn.textContent = "☰";
+            });
+        });
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+
+        document.querySelectorAll(".reveal").forEach(function (element) {
+            observer.observe(element);
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
-```
+'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created: {path} ({path.stat().st_size} bytes)")
